@@ -1,0 +1,67 @@
+import { useEffect, useState } from "react";
+import MenuItems from "./MenuItems";
+import TopNavbar from "./TopNavbar";
+
+const Navbar = ({ darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser, removeCookie }) => {
+    const [width, setWidth] = useState(window.innerWidth);
+    const [isShow, setIsShow] = useState(false);
+    const [activeTab, setActiveTab] = useState('home');
+
+    const handleMenu = (showing) => {
+        if (showing === true) {
+            setIsShow(false);
+        } else {
+            setIsShow(true);
+        }
+    };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        }
+        window.addEventListener("resize", handleResize);
+    }, []);
+    
+    return (
+
+        <nav className="bg-gray-100 dark:bg-gray-700">
+            <TopNavbar darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled} loggedIn={loggedIn} setLoggedIn={setLoggedIn} theUser={theUser} removeCookie={removeCookie} />
+
+            { width > 767 ?
+                <MenuItems activeTab={activeTab} setActiveTab={setActiveTab} darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled} /> 
+                : 
+                <div>
+                    { isShow ?
+                        <> 
+                            <div className="flex items-center">
+                                <svg onClick={() => handleMenu(isShow)} className="h-7 w-7 mx-auto cursor-pointer text-gray-800 dark:text-gray-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                                <div onClick={() => setDarkEnabled(!darkEnabled)} className={`mx-auto my-2 md:hidden flex h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 ring-green-400 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out `}>
+                                    <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
+                                </div>
+                            </div>
+                            <MenuItems activeTab={activeTab} setActiveTab={setActiveTab} darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled}/> 
+                        </>
+                        :
+                        <div className="flex items-center">
+                            <svg onClick={() => handleMenu(isShow)} className="h-7 w-7 mx-auto cursor-pointer text-gray-800 dark:text-gray-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /> 
+                            </svg>
+                            <div onClick={() => setDarkEnabled(!darkEnabled)} className={`mx-auto my-2 flex md:hidden h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 ring-green-400 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out `}>
+                                <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
+                            </div>
+                        </div>
+                    }
+                
+                <div onClick={() => setDarkEnabled(!darkEnabled)} className={`mx-auto my-2 hidden md:flex h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 ring-green-400 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out `}>
+                    <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
+                </div>
+            </div>
+            }
+            
+        </nav>
+    );
+}
+ 
+export default Navbar;
