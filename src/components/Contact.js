@@ -17,7 +17,7 @@ const Contact = () => {
         setMessageError(null);
 
         try {
-            const res = await fetch('http://localhost:5000/user/suggestion', {
+            const res = await fetch('https://my-server-demo.herokuapp.com/user/suggestion', {
                 method: 'POST',
                 body: JSON.stringify({ name, email, message }),
                 headers: { 'Content-Type': 'application/json' }

@@ -18,7 +18,7 @@ const Login = ({ loggedIn, setLoggedIn, setCookie }) => {
         setEmailError(null);
 
         try {
-            const res = await fetch('http://localhost:5000/user/login', {
+            const res = await fetch('https://my-server-demo.herokuapp.com/user/login', {
                 method: 'POST',
                 body: JSON.stringify({ email, password }),
                 headers: { 'Content-Type': 'application/json' }

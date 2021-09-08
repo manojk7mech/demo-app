@@ -30,7 +30,7 @@ function App() {
     async function fetchData() {
 
       try {      
-        const res = await fetch('http://localhost:5000/user/check', {
+        const res = await fetch('https://my-server-demo.herokuapp.com/user/check', {
           method: 'POST',
           body: JSON.stringify({ token }),
           headers: { 'Content-Type': 'application/json' }

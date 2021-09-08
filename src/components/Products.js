@@ -1,7 +1,7 @@
 const Products = () => {
     return ( 
         <>
-         {/* <div className="dark:bg-gray-700">
+         <div className="dark:bg-gray-700">
               <h1 className="text-2xl font-bold text-center uppercase p-2 bg-gradient-to-r from-purple-400 dark:from-pink-200 to-pink-500 dark:to-pink-200 text-transparent bg-clip-text my-4">Select from the world class products of ours!</h1>
               <h3 className="text-center font-semibold text-xl m-1.5 dark:text-gray-300 text-gray-700">Why should you buy from us ?????</h3>
               <h3 className="text-center font-semibold text-xl m-1.5 dark:text-gray-300 text-gray-700">Don't worry, We got you covered...</h3>
@@ -189,7 +189,7 @@ const Products = () => {
                       </div>
                   </div>
               </div>
-          </div> */}
+          </div>
         </>
     );
 }

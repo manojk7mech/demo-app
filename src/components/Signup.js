@@ -18,7 +18,7 @@ const Signup = ({ loggedIn, setLoggedIn, setCookie }) => {
         setPasswordError(null);
 
         try {
-            const res = await fetch('http://localhost:5000/user/register', {
+            const res = await fetch('https://my-server-demo.herokuapp.com/user/register', {
                 method: 'POST',
                 body: JSON.stringify({ name, email, password }),
                 headers: { 'Content-Type': 'application/json' }
