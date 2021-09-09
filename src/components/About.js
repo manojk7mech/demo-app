@@ -1,14 +1,10 @@
-const About = ({ darkEnabled, setDarkEnabled }) => {
-    
+const About = () => {
+
     return (
-        <div>
-            {/* <h1>Toggle dark mode</h1>
-            <div className="bg-gray-300 dark:bg-gray-800 text-black dark:text-gray-50">
-                <div onClick={() => setDarkEnabled(!darkEnabled)} className={`flex h-5 w-11 bg-gray-300 ring-2 ring-green-400 rounded-full m-5 cursor-pointer transform transition-transform duration-200 ease-in-out `}>
-                    <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
-                </div>
-                {darkEnabled ? 'Enabled': 'Not enabled'}
-            </div> */}
+        <div className="dark:bg-gray-700 pb-4">
+            <h1 className="text-center pt-6 pb-4 text-2xl font-bold uppercase text-blue-500 dark:text-green-500">It is actually about me (For now atleast)!</h1>
+            <h3 className="text-center text-lg text-blue-400 dark:text-green-600 font-semibold block pb-3">
+                <span className="font-bold text-pink-400">Hi, I am Manoj Kumar</span><br />Mechanical Engineer by degree...<br />Coder by passion...</h3>
         </div>
     );
 }

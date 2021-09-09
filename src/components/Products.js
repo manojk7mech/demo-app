@@ -2,7 +2,7 @@ const Products = () => {
     return ( 
         <>
          <div className="dark:bg-gray-700">
-              <h1 className="text-2xl font-bold text-center uppercase p-2 bg-gradient-to-r from-purple-400 dark:from-pink-200 to-pink-500 dark:to-pink-200 text-transparent bg-clip-text my-4">Select from the world class products of ours!</h1>
+              <h1 className="text-2xl font-bold text-center uppercase py-6 text-blue-500 dark:text-green-600">Select from the world class products of ours!</h1>
               <h3 className="text-center font-semibold text-xl m-1.5 dark:text-gray-300 text-gray-700">Why should you buy from us ?????</h3>
               <h3 className="text-center font-semibold text-xl m-1.5 dark:text-gray-300 text-gray-700">Don't worry, We got you covered...</h3>
               <div className="flex justify-center">
@@ -33,8 +33,8 @@ const Products = () => {
                       </div>
                   </div>
               </div>
-              <h5 className="text-center font-semibold text-xl m-3 dark:text-blue-200 text-blue-800">Choose from the following products! Okay...</h5>
-              <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+              <h5 className="text-center font-semibold text-xl m-3 dark:text-green-600 text-blue-800">Choose from the following products! Okay...</h5>
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 pb-3">
                   <div className="flex-col items-center m-3 rounded-md overflow-hidden shadow-md hover:shadow-lg bg-gray-200 dark:bg-gray-600">
                       <div className="flex justify-center">
                           <img className="h-48 w-full object-cover" src="/images/earphone-1.jpg" alt="Earphone-1" />

@@ -40,9 +40,9 @@ const Contact = () => {
     };
 
     return (
-        <div className="dark:bg-gray-700">
-            <h1 className="text-center mt-3 text-2xl font-bold uppercase bg-gradient-to-r from-purple-400 to-pink-500 text-transparent bg-clip-text">Contact us!</h1>
-            <h3 className="text-center mt-2 text-lg text-gray-500 font-semibold block p-1">Give suggestions. Help us improve...</h3>
+        <div className="dark:bg-gray-700 pb-4">
+            <h1 className="text-center pt-6 pb-4 text-2xl font-bold uppercase text-blue-500 dark:text-green-600">Contact us!</h1>
+            <h3 className="text-center text-lg text-blue-400 dark:text-green-700 font-semibold block pb-3">Give suggestions. Help us improve...</h3>
             <form className="w-full flex-col mt-2 rounded-md mx-auto bg-gradient-to-r to-pink-300 from-purple-300 max-w-xs p-2 pt-1 mb-3 shadow-md"
                 onSubmit={e => handleSuggestion(e)}
             >
@@ -61,7 +61,7 @@ const Contact = () => {
                     onChange={(e) => setMessage(e.target.value)}
                 />
                 { messageError && <div className="mb-2 text-xs text-red-600">{messageError}</div> }
-                <button className="focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-700 bg-gray-200 focus:outline-none tracking-wide" type="submit">Submit</button>
+                <button className="focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-700 dark:text-green-600 bg-gray-200 focus:outline-none tracking-wide" type="submit">Submit</button>
             </form>
         </div>
     );
