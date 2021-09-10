@@ -48,12 +48,11 @@ const Navbar = ({ darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser, r
                             <svg onClick={() => handleMenu(isShow)} className="h-7 w-7 mx-auto cursor-pointer text-gray-800 dark:text-gray-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /> 
                             </svg>
-                            <div onClick={() => setDarkEnabled(!darkEnabled)} className={`mx-auto my-2 flex md:hidden h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 ring-green-400 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out `}>
-                                <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
+                            <div onClick={() => setDarkEnabled(!darkEnabled)} className={`mx-auto my-2 flex md:hidden h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 dark:ring-green-400 ring-blue-700 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out `}>
+                                <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 dark:bg-green-300 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
                             </div>
                         </div>
                     }
-                
                 <div onClick={() => setDarkEnabled(!darkEnabled)} className="mx-auto hidden md:flex h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 dark:ring-green-400 ring-blue-700 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out mt-4">
                     <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 dark:bg-green-300 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
                 </div>

@@ -23,7 +23,7 @@ const TopNavbar = ({ darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser
         <div className="flex justify-center items-center md:justify-between max-w-screen-lg mx-auto transform duration-300 ease-in">
             <div className="mx-3 my-1 flex items-center text-center cursor-pointer">
                 <Link to="/">
-                    <motion.img className="h-16" src="/images/miconblue.png" alt="Logo" 
+                    <motion.img className="h-16" src={`/images/miconblue_${darkEnabled ? 'white' : 'black'}.png`} alt="Logo" 
                         initial = {{ rotateZ: -120, opacity: 0 }}
                         animate = {{ rotateZ: 0, opacity: 1 }}
                         transition = {{ delay: 0.5, type: 'spring', stiffness: 150, mass: 6, damping: 4 }}
@@ -47,11 +47,11 @@ const TopNavbar = ({ darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser
                             variants={buttonVariants} whileHover="hover"  
                         >Logout</motion.button>
                     </div> : 
-                    <div className="mx-3 flex flex-col md:flex-row">
-                        <motion.button variants={buttonVariants} whileHover="hover">
-                        <Link to="/signup" className="text-center text-blue-800 dark:text-blue-200 border-2 rounded-lg font-semibold border-blue-800 dark:border-green-200 px-2 py-1 my-1 cursor-pointer dark:hover:bg-green-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1">Signup</Link></motion.button>
-                        <motion.button variants={buttonVariants} whileHover="hover" >
-                        <Link to="/login" className="text-center text-blue-800 dark:text-blue-200 border-2 rounded-lg font-semibold border-blue-800 dark:border-green-200 px-2 py-1 my-1 cursor-pointer dark:hover:bg-green-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1">Login</Link></motion.button>
+                    <div className="mx-3 flex flex-col items-center  md:flex-row">
+                        <Link>
+                        <motion.button variants={buttonVariants} whileHover="hover" to="/signup" className="text-center text-blue-800 dark:text-blue-200 border-2 rounded-lg font-semibold border-blue-800 dark:border-green-200 px-2 py-1 my-1 cursor-pointer dark:hover:bg-green-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1">Signup</motion.button></Link>
+                        <Link>
+                        <motion.button variants={buttonVariants} whileHover="hover"  to="/login" className="text-center text-blue-800 dark:text-blue-200 border-2 rounded-lg font-semibold border-blue-800 dark:border-green-200 px-2 py-1 my-1 cursor-pointer dark:hover:bg-green-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1">Login</motion.button></Link>
                     </div>
                 }
                 <div onClick={() => setDarkEnabled(!darkEnabled)} className="mx-auto hidden md:flex h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 dark:ring-green-400 ring-blue-700 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out mt-4"> 
