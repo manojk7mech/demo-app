@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+// import { motion } from 'framer-motion';
 
 const MenuItems = ({ activeTab, setActiveTab, darkEnabled, setDarkEnabled }) => {
     return (
@@ -16,6 +17,7 @@ const MenuItems = ({ activeTab, setActiveTab, darkEnabled, setDarkEnabled }) => 
                 </li>
                 <li className={`${activeTab === 'products' ? 'nav-item-active' : 'nav-item'}`}
                     onClick={() => setActiveTab('products')}
+
                 >
                     <Link to="/products" className="cursor-pointer flex justify-center items-center">
                         <svg className="h-6 w-6 mx-1.5" viewBox="0 0 20 20" fill="currentColor">
