@@ -1,12 +1,17 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 // import { motion } from 'framer-motion';
 
-const MenuItems = ({ activeTab, setActiveTab, darkEnabled, setDarkEnabled }) => {
+const MenuItems = () => {
+    const { pathname } = useLocation();
+    console.log(pathname);
+    const [activeTab, setActiveTab] = useState(pathname);
+
     return (
         <div>
             <ul className="md:flex items-center text-center justify-center border-t border-b border-gray-700 dark:border-gray-200">
-                <li className={`${activeTab === 'home' ? 'nav-item-active' : 'nav-item'}`}
-                    onClick={() => setActiveTab('home')}
+                <li className={`${activeTab === '/' ? 'nav-item-active' : 'nav-item'}`}
+                    onClick={() => setActiveTab('/')}
                 >
                     <Link to="/" className="cursor-pointer flex justify-center items-center hover:scale-125">
                         <svg className="h-6 w-6 mx-1.5" viewBox="0 0 20 20" fill="currentColor">
@@ -15,8 +20,8 @@ const MenuItems = ({ activeTab, setActiveTab, darkEnabled, setDarkEnabled }) => 
                         <span className="">Home</span>
                     </Link>
                 </li>
-                <li className={`${activeTab === 'products' ? 'nav-item-active' : 'nav-item'}`}
-                    onClick={() => setActiveTab('products')}
+                <li className={`${activeTab === '/products' ? 'nav-item-active' : 'nav-item'}`}
+                    onClick={() => setActiveTab('/products')}
 
                 >
                     <Link to="/products" className="cursor-pointer flex justify-center items-center">
@@ -26,8 +31,8 @@ const MenuItems = ({ activeTab, setActiveTab, darkEnabled, setDarkEnabled }) => 
                         <span>Products</span>
                     </Link>
                 </li>
-                <li className={`${activeTab === 'services' ? 'nav-item-active' : 'nav-item'}`}
-                    onClick={() => setActiveTab('services')}
+                <li className={`${activeTab === '/services' ? 'nav-item-active' : 'nav-item'}`}
+                    onClick={() => setActiveTab('/services')}
                 >
                     <Link to="/services" className="cursor-pointer flex justify-center items-center">
                         <svg className="h-6 w-6 mx-1.5" viewBox="0 0 20 20" fill="currentColor">
@@ -36,8 +41,8 @@ const MenuItems = ({ activeTab, setActiveTab, darkEnabled, setDarkEnabled }) => 
                         <span>Services</span>
                     </Link>
                 </li>
-                <li className={`${activeTab === 'about' ? 'nav-item-active' : 'nav-item'}`}
-                    onClick={() => setActiveTab('about')}
+                <li className={`${activeTab === '/about' ? 'nav-item-active' : 'nav-item'}`}
+                    onClick={() => setActiveTab('/about')}
                 >
                     <Link to="/about" className="cursor-pointer flex justify-center items-center">
                         <svg className="h-6 w-6 mx-1.5" viewBox="0 0 20 20" fill="currentColor">
@@ -46,8 +51,8 @@ const MenuItems = ({ activeTab, setActiveTab, darkEnabled, setDarkEnabled }) => 
                         <span>About Us</span>
                     </Link>
                 </li>
-                <li className={`${activeTab === 'contact' ? 'nav-item-active' : 'nav-item'}`}
-                    onClick={() => setActiveTab('contact')}
+                <li className={`${activeTab === '/contact' ? 'nav-item-active' : 'nav-item'}`}
+                    onClick={() => setActiveTab('/contact')}
                 >
                     <Link to="/contact" className="cursor-pointer flex justify-center items-center">
                         <svg className="h-6 w-6 mx-1.5" viewBox="0 0 20 20" fill="currentColor">

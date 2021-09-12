@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
     const [name, setName] = useState('');
@@ -63,6 +64,7 @@ const Contact = () => {
                 { messageError && <div className="mb-2 text-xs text-red-600">{messageError}</div> }
                 <button className="focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-700 dark:text-green-600 bg-gray-200 focus:outline-none tracking-wide" type="submit">Submit</button>
             </form>
+            <Link to="/payment" className="flex justify-center p-2 my-3 w-auto border-gray-600 bg-pink-700 text-pink-50 font-bold">Make a payment!</Link>
         </div>
     );
 }

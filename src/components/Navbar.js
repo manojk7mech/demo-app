@@ -5,7 +5,6 @@ import TopNavbar from "./TopNavbar";
 const Navbar = ({ darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser, removeCookie }) => {
     const [width, setWidth] = useState(window.innerWidth);
     const [isShow, setIsShow] = useState(false);
-    const [activeTab, setActiveTab] = useState('home');
 
     useEffect(() => {
         window.addEventListener("resize", () => {
@@ -19,7 +18,7 @@ const Navbar = ({ darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser, r
             <TopNavbar darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled} loggedIn={loggedIn} setLoggedIn={setLoggedIn} theUser={theUser} removeCookie={removeCookie} />
 
             { width > 767 ?
-                <MenuItems activeTab={activeTab} setActiveTab={setActiveTab} darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled} /> 
+                <MenuItems darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled} /> 
                 : 
                 <div>
                     { isShow ?
@@ -32,7 +31,7 @@ const Navbar = ({ darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser, r
                                     <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 dark:bg-green-300 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
                                 </div>
                             </div>
-                            <MenuItems activeTab={activeTab} setActiveTab={setActiveTab} darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled}/> 
+                            <MenuItems darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled}/> 
                         </>
                         :
                         <div className="flex items-center">

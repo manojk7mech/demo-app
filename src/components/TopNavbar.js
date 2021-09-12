@@ -7,7 +7,7 @@ const buttonVariants = {
         transition: {
             type: 'spring',
             duration: 0.3,
-            yoyo: Infinity
+            repeat: Infinity
         }
     }
 };
@@ -48,9 +48,9 @@ const TopNavbar = ({ darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser
                         >Logout</motion.button>
                     </div> : 
                     <div className="mx-3 flex flex-col items-center  md:flex-row">
-                        <Link>
+                        <Link to="/signup">
                         <motion.button variants={buttonVariants} whileHover="hover" to="/signup" className="text-center text-blue-800 dark:text-blue-200 border-2 rounded-lg font-semibold border-blue-800 dark:border-green-200 px-2 py-1 my-1 cursor-pointer dark:hover:bg-green-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1">Signup</motion.button></Link>
-                        <Link>
+                        <Link to="/login">
                         <motion.button variants={buttonVariants} whileHover="hover"  to="/login" className="text-center text-blue-800 dark:text-blue-200 border-2 rounded-lg font-semibold border-blue-800 dark:border-green-200 px-2 py-1 my-1 cursor-pointer dark:hover:bg-green-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1">Login</motion.button></Link>
                     </div>
                 }

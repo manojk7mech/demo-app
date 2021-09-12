@@ -10,6 +10,7 @@ import Login from './components/Login';
 import Error404 from './components/Error404';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
+import Payment from './components/Payment';
 
 function App() {
   const [darkEnabled, setDarkEnabled] = useState(false);
@@ -19,6 +20,7 @@ function App() {
   const [theUser, setTheUser] = useState(null);
 
   useEffect( () => {
+    // console.log(url);
     const token = cookies.authToken;
 
     if (token) {
@@ -77,6 +79,9 @@ function App() {
             </Route>
             <Route path="/login">
               <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setCookie={setCookie} />
+            </Route>
+            <Route path='/payment'>
+              <Payment />
             </Route>
             <Route path="*">
               <Error404 />
