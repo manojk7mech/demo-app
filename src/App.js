@@ -80,9 +80,9 @@ function App() {
             <Route path="/login">
               <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setCookie={setCookie} />
             </Route>
-            <Route path='/payment'>
+            {/* <Route path='/payment'>
               <Payment />
-            </Route>
+            </Route> */}
             <Route path="*">
               <Error404 />
             </Route>
