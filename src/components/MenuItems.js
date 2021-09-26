@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 
 const MenuItems = () => {
     const { pathname } = useLocation();
-    console.log(pathname);
     const [activeTab, setActiveTab] = useState(pathname);
 
     return (
