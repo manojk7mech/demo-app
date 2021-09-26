@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useCookies } from "react-cookie";
 
 const Login = ({ loggedIn, setLoggedIn, setCookie }) => {
     // const [cookies, setCookie] = useCookies(["auth-token"]);

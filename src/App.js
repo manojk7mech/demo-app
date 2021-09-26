@@ -6,7 +6,7 @@ import Services from './components/Services';
 import About from './components/About';
 import Contact from './components/Contact';
 import Signup from './components/Signup';
-import Login from './components/Login';
+// import Login from './components/Login';
 import Error404 from './components/Error404';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
@@ -56,7 +56,7 @@ function App() {
   return (
     <Router>
       <div className={`${darkEnabled ? 'dark' : ''}`}>
-        <Navbar darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled} loggedIn={loggedIn} setLoggedIn={setLoggedIn} theUser={theUser} removeCookie={removeCookie} />
+        <Navbar darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled} loggedIn={loggedIn} setLoggedIn={setLoggedIn} theUser={theUser} setCookie={setCookie} removeCookie={removeCookie} />
         <div>
           <Switch>
             <Route exact path="/">
@@ -69,7 +69,7 @@ function App() {
               <Services />
             </Route>
             <Route path="/about">
-              <About />
+              <About loggedIn={loggedIn} setLoggedIn={setLoggedIn} setCookie={setCookie} />
             </Route>
             <Route path="/contact">
               <Contact />
@@ -77,9 +77,9 @@ function App() {
             <Route path="/signup">
               <Signup loggedIn={loggedIn} setLoggedIn={setLoggedIn} setCookie={setCookie} />
             </Route>
-            <Route path="/login">
+            {/* <Route path="/login">
               <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setCookie={setCookie} />
-            </Route>
+            </Route> */}
             {/* <Route path='/payment'>
               <Payment />
             </Route> */}

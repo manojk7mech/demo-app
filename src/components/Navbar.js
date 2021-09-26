@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MenuItems from "./MenuItems";
 import TopNavbar from "./TopNavbar";
 
-const Navbar = ({ darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser, removeCookie }) => {
+const Navbar = ({ darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser, setCookie, removeCookie }) => {
     const [width, setWidth] = useState(window.innerWidth);
     const [isShow, setIsShow] = useState(false);
 
@@ -15,7 +15,7 @@ const Navbar = ({ darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser, r
     return (
 
         <nav className="bg-gray-100 dark:bg-gray-700">
-            <TopNavbar darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled} loggedIn={loggedIn} setLoggedIn={setLoggedIn} theUser={theUser} removeCookie={removeCookie} />
+            <TopNavbar darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled} loggedIn={loggedIn} setLoggedIn={setLoggedIn} theUser={theUser} setCookie={setCookie} removeCookie={removeCookie} />
 
             { width > 767 ?
                 <MenuItems darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled} /> 
