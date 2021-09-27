@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { setLoggedIn } from './features/loggedInSlice'
 import { setTheUser } from './features/theUserSlice';
+import Footer from './components/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -88,6 +89,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        <Footer />
       </div>
     </Router>
   );
