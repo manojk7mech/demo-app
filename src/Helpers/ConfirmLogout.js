@@ -1,10 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setLoggedIn } from '../features/loggedInSlice';
 
 function ConfirmLogout(props) {
-    const { closeModal, setLoggedIn, removeCookie } = props;
+    const dispatch = useDispatch();
+
+    const { closeModal, removeCookie } = props;
     
     const handleLogout = () => {
-        setLoggedIn(false);
+        dispatch(setLoggedIn(false));
         removeCookie("authToken");
         closeModal(false);
     };

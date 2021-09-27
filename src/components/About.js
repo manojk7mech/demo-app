@@ -1,13 +1,15 @@
 import { useState } from "react";
 import LoginModal from "../Helpers/LoginModal";
+import { useSelector } from "react-redux";
 
-const About = ({ loggedIn, setLoggedIn, setCookie }) => {
+const About = ({ setCookie }) => {
+    const loggedIn = useSelector(state => state.loggedIn.value);
     const [loginModal, setLoginModal] = useState(false)
 
     return (
         <>
             { loginModal && 
-            <LoginModal loggedIn={loggedIn} setLoggedIn={setLoggedIn} setCookie={setCookie} setLoginModal={setLoginModal} /> }
+            <LoginModal setCookie={setCookie} setLoginModal={setLoginModal} /> }
 
             { loggedIn ? (
                 <div className="dark:bg-gray-700 pb-4">
@@ -25,6 +27,6 @@ const About = ({ loggedIn, setLoggedIn, setCookie }) => {
             ) }
         </>
     );
-}
+};
 
 export default About;

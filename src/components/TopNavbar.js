@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 import ConfirmLogout from '../Helpers/ConfirmLogout';
 import LoginModal from "../Helpers/LoginModal";
+import SignupModal from "../Helpers/SignupModal";
+
+import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux';
+import { setDarkEnabled } from '../features/darkEnabledSlice';
 
 const buttonVariants = {
     hover: {
@@ -16,18 +21,28 @@ const buttonVariants = {
 };
 
 const TopNavbar = (props) => {
+    const dispatch = useDispatch();
+    const darkEnabled = useSelector(state => state.darkEnabled.value);
+    const theUser = useSelector(state => state.theUser.value);
+
+    const loggedIn = useSelector(state => state.loggedIn.value);
+
     const [openLogoutModal, setOpenLogoutModal] = useState(false);
     const [openLoginModal, setOpenLoginModal] = useState(false);
+    const [openSignupModal, setOpenSignupModal] = useState(false);
 
-    const { darkEnabled, setDarkEnabled, loggedIn, setLoggedIn, theUser, setCookie, removeCookie } = props;
+    const { setCookie, removeCookie } = props;
 
     return (
         <>
+            { openSignupModal && 
+                <SignupModal setSignupModal={setOpenSignupModal} setCookie={setCookie} />
+            }
             { openLoginModal && 
-                <LoginModal setLoginModal={setOpenLoginModal} setLoggedIn={setLoggedIn} setCookie={setCookie} />
+                <LoginModal setLoginModal={setOpenLoginModal} setCookie={setCookie} />
             }
             { openLogoutModal && 
-                <ConfirmLogout closeModal={setOpenLogoutModal} setLoggedIn={setLoggedIn} removeCookie={removeCookie} />
+                <ConfirmLogout closeModal={setOpenLogoutModal} removeCookie={removeCookie} />
             }
             <div className="flex justify-center items-center md:justify-between max-w-screen-lg mx-auto transform duration-300 ease-in">
                 <div className="mx-3 my-1 flex items-center text-center cursor-pointer">
@@ -59,16 +74,21 @@ const TopNavbar = (props) => {
                             >Logout</motion.button>
                         </div> : 
                         <div className="mx-3 flex flex-col items-center md:flex-row w-auto">
-                            <Link to="/signup">
-                                <motion.button variants={buttonVariants} whileHover="hover" className="text-center text-blue-800 dark:text-blue-200 border-2 rounded-lg font-semibold border-blue-800 dark:border-green-200 px-2 py-1 my-1 cursor-pointer dark:hover:bg-green-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1 w-full md:w-auto">Signup</motion.button>
-                            </Link>
-                                <motion.button 
+                            <motion.button 
+                                variants={buttonVariants}
+                                onClick={() => setOpenSignupModal(true)}
+                                whileHover="hover" 
+                                className="text-center text-blue-800 dark:text-blue-200 border-2 rounded-lg font-semibold border-blue-800 dark:border-green-200 px-2 py-1 my-1 cursor-pointer dark:hover:bg-green-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1 w-full md:w-auto"
+                            >Signup</motion.button>
+                            <motion.button 
                                 variants={buttonVariants}
                                 onClick={() => setOpenLoginModal(true)}
-                                whileHover="hover"className="text-center text-blue-800 dark:text-blue-200 border-2 rounded-lg font-semibold border-blue-800 dark:border-green-200 px-3 py-1 my-1 cursor-pointer dark:hover:bg-green-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1 w-full md:w-auto">Login</motion.button>
+                                whileHover="hover"
+                                className="text-center text-blue-800 dark:text-blue-200 border-2 rounded-lg font-semibold border-blue-800 dark:border-green-200 px-3 py-1 my-1 cursor-pointer dark:hover:bg-green-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1 w-full md:w-auto"
+                            >Login</motion.button>
                         </div>
                     }
-                    <div onClick={() => setDarkEnabled(!darkEnabled)} className="mx-auto hidden md:flex h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 dark:ring-green-400 ring-blue-700 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out mt-4"> 
+                    <div onClick={() => dispatch(setDarkEnabled(!darkEnabled))} className="mx-auto hidden md:flex h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 dark:ring-green-400 ring-blue-700 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out mt-4"> 
                         <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 dark:bg-green-300 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
                     </div>
                 </div>

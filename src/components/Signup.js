@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setLoggedIn } from "../features/loggedInSlice";
 
-const Signup = ({ loggedIn, setLoggedIn, setCookie }) => {
+const Signup = ({ setCookie }) => {
+    const dispatch = useDispatch();
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -35,13 +38,13 @@ const Signup = ({ loggedIn, setLoggedIn, setCookie }) => {
                     path: "/"
                 });
 
-                setLoggedIn(true);
+                dispatch(setLoggedIn(true));
 
                 window.location ='/';
             }
         }
         catch (err) {
-            setLoggedIn(false);
+            dispatch(setLoggedIn(false));
         }
     }
 

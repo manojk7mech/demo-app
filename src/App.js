@@ -5,19 +5,20 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Services from './components/Services';
 import About from './components/About';
 import Contact from './components/Contact';
-import Signup from './components/Signup';
-// import Login from './components/Login';
 import Error404 from './components/Error404';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import Payment from './components/Payment';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { setLoggedIn } from './features/loggedInSlice'
+import { setTheUser } from './features/theUserSlice';
 
 function App() {
-  const [darkEnabled, setDarkEnabled] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(["authToken"]);
+  const dispatch = useDispatch();
+  const darkEnabled = useSelector(state => state.darkEnabled.value);
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [theUser, setTheUser] = useState(null);
+  const [cookies, setCookie, removeCookie] = useCookies(["authToken"]);
 
   useEffect( () => {
     // console.log(url);
@@ -40,11 +41,12 @@ function App() {
         const data = await res.json();
         // console.log(data);
         if (data.user) {
-          setLoggedIn(true);
-          setTheUser(data.user);
+          dispatch(setLoggedIn(true));
+          dispatch(setTheUser(data.user));
+          console.log(data.user);
         }
         if (data.error) {
-          setLoggedIn(false);
+          dispatch(setLoggedIn(false));
         }
       }
       catch (err) {
@@ -56,7 +58,7 @@ function App() {
   return (
     <Router>
       <div className={`${darkEnabled ? 'dark' : ''}`}>
-        <Navbar darkEnabled={darkEnabled} setDarkEnabled={setDarkEnabled} loggedIn={loggedIn} setLoggedIn={setLoggedIn} theUser={theUser} setCookie={setCookie} removeCookie={removeCookie} />
+        <Navbar setCookie={setCookie} removeCookie={removeCookie} />
         <div>
           <Switch>
             <Route exact path="/">
@@ -69,19 +71,17 @@ function App() {
               <Services />
             </Route>
             <Route path="/about">
-              <About loggedIn={loggedIn} setLoggedIn={setLoggedIn} setCookie={setCookie} />
+              <About setCookie={setCookie} />
             </Route>
             <Route path="/contact">
               <Contact />
             </Route>
-            <Route path="/signup">
-              <Signup loggedIn={loggedIn} setLoggedIn={setLoggedIn} setCookie={setCookie} />
-            </Route>
-            {/* <Route path="/login">
-              <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setCookie={setCookie} />
-            </Route> */}
             {/* <Route path='/payment'>
               <Payment />
+            </Route> */}
+            {/* <Route path="/profile">
+              <Profile />
+              <Login />
             </Route> */}
             <Route path="*">
               <Error404 />

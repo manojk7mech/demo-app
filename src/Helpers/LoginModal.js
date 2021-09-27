@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { setLoggedIn } from '../features/loggedInSlice';
 
-function LoginModal(props) {
-    const { setLoginModal, setLoggedIn, setCookie } = props;
+function LoginModal({ setLoginModal, setCookie }) {
+    const dispatch = useDispatch();
 
     const [emailError, setEmailError] = useState(null);
     const [passwordError, setPasswordError] = useState(null);
@@ -36,14 +38,14 @@ function LoginModal(props) {
                     path: "/"
                 });
 
-                setLoggedIn(true);
+                dispatch(setLoggedIn(true));
                 setLoginModal(false);
 
                 // window.location ='/';
             }
         }
         catch (err) {
-            setLoggedIn(false);
+            dispatch(setLoggedIn(false));
         }
 
     }
@@ -59,7 +61,8 @@ function LoginModal(props) {
             
             <div className="md:w-80 p-3 border-2 rounded-md m-3 shadow">
                 <div className="font-bold text-xl text-gray-800 text-center p-3 ">Login...</div>
-                <form className="w-full flex-col mt-2 rounded-md mx-auto bg-gradient-to-r to-pink-300 from-purple-300 p-2 pt-1 mb-3 shadow-md">
+                <form className="w-full flex-col mt-2 rounded-md mx-auto bg-gradient-to-r to-pink-300 from-purple-300 p-2 pt-1 mb-3 shadow-md" 
+                    onSubmit={e => handleLogin(e)}>
                     <label htmlFor="email">Email</label>
                     <input type="text" className="focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block pl-3 pr-2 py-1 m-2 w-full mx-auto outline-none rounded-md" required name="email"
                         onChange={(e) => setEmail(e.target.value)}
@@ -71,7 +74,6 @@ function LoginModal(props) {
                     />
                     { passwordError && <div className="mb-2 text-xs text-red-600">{passwordError}</div> }
                     <button className="focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-700 bg-gray-200 focus:outline-none tracking-wide dark:text-green-600" type="submit"
-                        onClick={handleLogin}
                     >Login</button>
                 </form>
             </div>
