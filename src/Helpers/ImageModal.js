@@ -32,7 +32,7 @@ function ImageModal({ setOpenImageModal, myImage }) {
                 <div className="w-full h-full bg-red-300 fixed top-0 left-0 z-30 grid place-items-center">
                     <motion.div
                         variants={innerModalVariants}
-                        className="w-full h-full  p-2 shadow bg-opacity-40 grid place-items-center">
+                        className="w-full h-full p-2 shadow bg-opacity-40 grid place-items-center">
                         <img className="rounded-md overflow-hidden object-contain bg-opacity-40 shadow-lg" src={myImage.imgSrc} alt={myImage.alt} />
                     </motion.div>
                 </div>
