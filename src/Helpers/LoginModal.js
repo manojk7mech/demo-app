@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
-import { setLoggedIn } from '../features/loggedInSlice';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { ChevronDoubleRightIcon, XIcon } from '@heroicons/react/solid'
+import { setLoggedIn } from '../features/loggedInSlice';
 
 const outerModalVariants = {
     visible: { opacity: 1 },
@@ -75,9 +76,7 @@ function LoginModal({ setLoginModal, setCookie }) {
                 exit="hidden"
             >
             <button className="font-mono fixed z-50 p-2 top-0 right-0 font-bold" onClick={() => setLoginModal(false)}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <XIcon className="h-6 w-6" fill="white" viewBox="0 0 24 24" stroke="none" />
             </button>
             <div className="w-full h-full bg-red-300 fixed top-0 z-30 grid place-items-center">
                 
@@ -99,7 +98,9 @@ function LoginModal({ setLoginModal, setCookie }) {
                         />
                         { passwordError && <div className="mb-2 text-xs text-red-600">{passwordError}</div> }
                         <button className="focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-700 bg-gray-200 focus:outline-none tracking-wide dark:text-green-600" type="submit"
-                        >Login</button>
+                        >Login
+                            <ChevronDoubleRightIcon className="inline h-6 w-6 ml-2" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                        </button>
                     </form>
                 </motion.div>
             </div>
