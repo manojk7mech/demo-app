@@ -18,7 +18,7 @@ const Home = () => {
     return (
         <div className="flex justify-center dark:bg-gray-700 p-3">
             <div className="max-w-xl h-2/3 relative">
-                <img className="w-full object-cover" src={`${ImgList[imgNo].img}`} alt="Tech Company"/>
+                <img className="w-full object-cover" src={ImgList[imgNo].imgSrc} alt="Tech Company"/>
                 <div className="text-base text-center font-semibold absolute bottom-0 w-full bg-gray-600 p-1 bg-opacity-70 text-white">
                     { ImgList[imgNo].description }
                 </div> 
