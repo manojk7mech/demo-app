@@ -14,7 +14,7 @@ const Payment = () => {
         console.log(data);
     
         const options = {
-            key: 'rzp_test_a0yUPDgigIRgJN',
+            key: 'rzp_live_QcU1JxrOswzw6K',
             name: "MY Tech",
             description: "A Tech Company",
             order_id: data.id,
