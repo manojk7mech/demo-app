@@ -9,7 +9,8 @@ const Payment = () => {
     const handlePayment = async (e) => {
         e.preventDefault();
     
-        const response = await Axios.post('https://my-server-demo.herokuapp.com/razorpay/order', { amount });
+        // const response = await Axios.post('https://my-server-demo.herokuapp.com/razorpay/order', { amount });
+        const response = await Axios.post('hhtp:/http://localhost:5000/razorpay/order', { amount });
         const { data } = response;
         console.log(data);
     

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ConfirmLogout from '../Helpers/ConfirmLogout';
 import LoginModal from "../Helpers/LoginModal";
 import SignupModal from "../Helpers/SignupModal";
@@ -35,16 +35,35 @@ const TopNavbar = (props) => {
 
     return (
         <>
-            { openSignupModal && 
-                <SignupModal setSignupModal={setOpenSignupModal} setCookie={setCookie} />
-            }
-            { openLoginModal && 
-                <LoginModal setLoginModal={setOpenLoginModal} setCookie={setCookie} />
-            }
-            { openLogoutModal && 
-                <ConfirmLogout closeModal={setOpenLogoutModal} removeCookie={removeCookie} />
-            }
+            <AnimatePresence
+                initial={false}
+                exitBeforeEnter={true}
+                onExitComplete={() => null}
+            >
+                    { openLoginModal && 
+                        <LoginModal setLoginModal={setOpenLoginModal} setCookie={setCookie} />
+                    }
+            </AnimatePresence>
+            <AnimatePresence
+                initial={false}
+                exitBeforeEnter={true}
+                onExitComplete={() => null}
+            >
+                { openSignupModal && 
+                    <SignupModal setSignupModal={setOpenSignupModal} setCookie={setCookie} />
+                }
+            </AnimatePresence>
+            <AnimatePresence
+                initial={false}
+                exitBeforeEnter={true}
+                onExitComplete={() => null}
+            >
+                { openLogoutModal && 
+                    <ConfirmLogout closeModal={setOpenLogoutModal} removeCookie={removeCookie} />
+                }
+            </AnimatePresence>
             <div className="flex justify-center items-center md:justify-between max-w-screen-lg mx-auto transform duration-300 ease-in">
+                {/* Company Logo and name */}
                 <div className="mx-3 my-1 flex items-center text-center cursor-pointer">
                     <Link to="/">
                         <motion.img className="h-16" src={`/images/logo${darkEnabled ? 'dark' : 'Light'}.png`} alt="Logo" 
@@ -63,6 +82,7 @@ const TopNavbar = (props) => {
                     </div>
                 </div>
                 <div className="flex-col justify-center p-2">
+                    {/* Login, Logout, Signup Buttonds */}
                     { loggedIn ? 
                         <div className="mx-3 flex flex-col md:flex-row w-auto">
                             <div className="text-center text-blue-800 dark:text-blue-200 border-b-2 font-semibold border-blue-800 dark:border-blue-200 px-2 py-1 my-1 cursor-pointer dark:hover:bg-blue-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1 uppercase w-full">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const Contact = () => {
     const [name, setName] = useState('');
@@ -44,7 +44,7 @@ const Contact = () => {
         <div className="dark:bg-gray-700 pb-4">
             <h1 className="text-center pt-6 pb-4 text-2xl font-bold uppercase text-blue-500 dark:text-green-600">Contact us!</h1>
             <h3 className="text-center text-lg text-blue-400 dark:text-green-700 font-semibold block pb-3">Give suggestions. Help us improve...</h3>
-            <form className="w-full flex-col mt-2 rounded-md mx-auto bg-gradient-to-r to-pink-300 from-purple-300 max-w-xs p-2 pt-1 mb-3 shadow-md"
+            <form className="w-full flex-col my-2 rounded-md mx-auto bg-gradient-to-r to-pink-300 from-purple-300 max-w-xs p-2 pt-1 mb-3 shadow-md"
                 onSubmit={e => handleSuggestion(e)}
             >
                 <label htmlFor="name">Name</label>
@@ -64,7 +64,7 @@ const Contact = () => {
                 { messageError && <div className="mb-2 text-xs text-red-600">{messageError}</div> }
                 <button className="focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-700 dark:text-green-600 bg-gray-200 focus:outline-none tracking-wide" type="submit">Submit</button>
             </form>
-            {/* <Link to="/payment" className="flex justify-center p-2 my-3 w-auto border-gray-600 bg-pink-700 text-pink-50 font-bold">Make a payment!</Link> */}
+            {/* <Link to="/payment" className="flex justify-center p-2 mt-5 w-auto border-gray-600 bg-pink-700 text-pink-50 font-bold">Make a payment!</Link> */}
         </div>
     );
 }

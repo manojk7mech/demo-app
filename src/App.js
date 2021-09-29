@@ -77,13 +77,9 @@ function App() {
             <Route path="/contact">
               <Contact />
             </Route>
-            {/* <Route path='/payment'>
+            <Route path='/payment'>
               <Payment />
-            </Route> */}
-            {/* <Route path="/profile">
-              <Profile />
-              <Login />
-            </Route> */}
+            </Route>
             <Route path="*">
               <Error404 />
             </Route>

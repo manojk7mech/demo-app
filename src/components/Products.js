@@ -82,7 +82,7 @@ const Products = () => {
                     { ProductList.map(product => (
 
                         <div className="flex-col items-center m-3 rounded-md overflow-hidden shadow-md hover:shadow-lg bg-gray-200 dark:bg-gray-600 cursor-pointer relative">
-                            <HeartIcon ref={heartRef} className="h-6 w-6 mr-1 text-gray-800 dark:text-gray-200 absolute top-1 right-1" viewBox="0 0 20 20" fill="white" stroke="gray"/>
+                            <HeartIcon ref={heartRef} className="h-6 w-6 mr-1 text-gray-800 dark:text-gray-200 absolute top-1 right-1" viewBox="0 0 20 20" fill="white" stroke="none"/>
                             <div className="flex justify-center" onClick={() => openImg(product)}>
                                 <img className="h-48 w-full object-cover" 
                                 src={product.imgSrc} 

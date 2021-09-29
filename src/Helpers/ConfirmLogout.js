@@ -1,26 +1,40 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { XIcon } from '@heroicons/react/solid'
 import { setLoggedIn } from '../features/loggedInSlice';
 
 const outerModalVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
-    exit: { 
-        opacity: 0,
-        transition: { delay: 0.5 }
+    exit: { opacity: 0,
+        transition: { delay: 0.4 }
     }
 };
 
 const innerModalVariants = {
-    hidden: { y: "-100vh", opacity: 0 },
+    hidden: { y: "-100vh", opacity: 0.5 },
     visible: {
         y: 0,
         opacity: 1,
-        transition: { delay: 0.5 }
+        transition: { 
+            delay: 0.2,
+            duration: 0.3,
+            type: "spring",
+            damping: 25,
+            stiffness: 500
+        }
     },
-    exit: { y: "100vh", opacity: 0 }
+    exit: { 
+        y: "100vh", 
+        opacity: 0.5,
+        transition: { 
+            duration: 0.2,
+            type: "spring",
+            damping: 25,
+            stiffness: 500
+        }
+    }
 };
 
 function ConfirmLogout(props) {
@@ -35,7 +49,7 @@ function ConfirmLogout(props) {
     };
  
     return (
-        <AnimatePresence>
+        <>
             <motion.div
                 variants={outerModalVariants}
                 initial="hidden"
@@ -58,7 +72,7 @@ function ConfirmLogout(props) {
                     </motion.div>
                 </div>
             </motion.div>
-        </AnimatePresence>
+        </>
     )
 }
 
