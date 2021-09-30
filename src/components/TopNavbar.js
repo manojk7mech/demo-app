@@ -39,7 +39,7 @@ const TopNavbar = (props) => {
                 initial={false}
                 exitBeforeEnter={true}
                 onExitComplete={() => null}
-            >
+            > 
                     { openLoginModal && 
                         <LoginModal setLoginModal={setOpenLoginModal} setCookie={setCookie} />
                     }

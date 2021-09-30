@@ -1,11 +1,12 @@
 import TrendingList from "../Helpers/TrendingList";
 import ProductList from "../Helpers/ProductList";
 import ImageModal from "../Helpers/ImageModal";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { BadgeCheckIcon, CurrencyRupeeIcon, HeartIcon, ShoppingCartIcon } from "@heroicons/react/solid";
+import { CheckCircleIcon } from '@heroicons/react/outline';
+
 
 const Products = () => {
-    const heartRef = useRef();
 
     const [openImageModal, setOpenImageModal] = useState(false);
     const [myImage, setMyImage] = useState({});
@@ -13,6 +14,10 @@ const Products = () => {
     const openImg = (image) => {
         setOpenImageModal(true);
         setMyImage(image);
+    };
+
+    const toggleColor = (product) => {
+        product.color === "text-gray-100" ? ProductList[product.index].color = "text-red-600" :  ProductList[product.index].color = "text-gray-100";
     };
 
     // const changeColor = () => {
@@ -40,8 +45,9 @@ const Products = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="cursor-pointer text-center text-pink-800 dark:text-pink-200">
+                                <div className="cursor-pointer text-center text-blue-500 dark:text-green-600 flex justify-center items-center">
                                     {image.company}
+                                    <BadgeCheckIcon className="h-5 w-5 ml-1 text-blue-500 dark:text-green-600" viewBox="0 0 20 20" fill="currentColor" />
                                 </div>
                             </li>
                         )) }
@@ -55,19 +61,19 @@ const Products = () => {
                     <div className="flex justify-center">
                         <div className="flex-col mt-3">
                             <div className="flex items-center m-1">
-                            <BadgeCheckIcon className="h-5 w-5 mr-2 text-blue-500 dark:text-green-600" viewBox="0 0 20 20" fill="currentColor" />
+                                <CheckCircleIcon className="h-5 w-5 mr-2 text-blue-500 dark:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" />
                                 <p className="font-serif text-gray-800 dark:text-gray-200">Different varieties of products to choose from...</p>
                             </div>
                             <div className="flex items-center m-1">
-                                <BadgeCheckIcon className="h-5 w-5 mr-2 text-blue-500 dark:text-green-600" viewBox="0 0 20 20" fill="currentColor" />
+                                <CheckCircleIcon className="h-5 w-5 mr-2 text-blue-500 dark:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" />
                                 <p className="font-serif text-gray-800 dark:text-gray-200">Various types of colors...</p>
                             </div>
                             <div className="flex items-center m-1">
-                                <BadgeCheckIcon className="h-5 w-5 mr-2 text-blue-500 dark:text-green-600" viewBox="0 0 20 20" fill="currentColor" />
+                                <CheckCircleIcon className="h-5 w-5 mr-2 text-blue-500 dark:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" />
                                 <p className="font-serif text-gray-800 dark:text-gray-200">Designs that look amazing...</p>
                             </div>
                             <div className="flex items-center m-1">
-                                <BadgeCheckIcon className="h-5 w-5 mr-2 text-blue-500 dark:text-green-600" viewBox="0 0 20 20" fill="currentColor" />
+                                <CheckCircleIcon className="h-5 w-5 mr-2 text-blue-500 dark:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" />
                                 <p className="font-serif text-gray-800 dark:text-gray-200">Thousands of items in each category...</p>
                             </div>
                         </div>
@@ -81,10 +87,10 @@ const Products = () => {
                 
                     { ProductList.map(product => (
 
-                        <div className="flex-col items-center m-3 rounded-md overflow-hidden shadow-md hover:shadow-lg bg-gray-200 dark:bg-gray-600 cursor-pointer relative">
-                            <HeartIcon ref={heartRef} className="h-6 w-6 mr-1 text-gray-800 dark:text-gray-200 absolute top-1 right-1" viewBox="0 0 20 20" fill="white" stroke="none"/>
+                        <div className="flex-col items-center m-3 rounded-md overflow-hidden shadow-md hover:shadow-lg bg-gray-200 dark:bg-gray-600 relative">
+                            <HeartIcon onClick={() => toggleColor(product)} className={`${product.color} h-6 w-6 mr-1 absolute top-1 right-1 cursor-pointer z-10 hover:scale-110 transform transition duration-200 ease-in-out`} viewBox="0 0 20 20" fill="currentColor" stroke="none"/>
                             <div className="flex justify-center" onClick={() => openImg(product)}>
-                                <img className="h-48 w-full object-cover" 
+                                <img className="h-48 w-full object-cover cursor-pointer hover:scale-105 transform transition duration-200 ease-in-out" 
                                 src={product.imgSrc} 
                                 alt={product.alt} 
                             />
@@ -97,9 +103,11 @@ const Products = () => {
                             <div className="flex justify-between items-center">
                                 <div className="flex justify-center items-center font-semibold text-gray-700 dark:text-gray-300 mx-2">
                                     <CurrencyRupeeIcon className="h-6 w-6 mr-1 text-gray-800 dark:text-gray-200" viewBox="0 0 20 20" fill="currentColor" />
-                                    <span className="font-semibold text-gray-700 dark:text-gray-300">{product.amount}</span>
+                                    <span className="font-semibold text-gray-700 dark:text-gray-300">
+                                        {product.amount}
+                                    </span>
                                 </div>
-                                <button className="flex justify-center items-center my-2 mx-2 py-1 px-2 rounded-md border-blue-800 dark:border-gray-200 border dark:text-blue-100 hover:text-blue-50 dark:hover:bg-gray-600 hover:bg-gray-400" type="submit">
+                                <button className="flex justify-center items-center my-2 mx-2 py-1 px-2 rounded-md border-blue-800 dark:border-gray-200 border dark:text-blue-100 hover:text-blue-50 dark:hover:bg-gray-800 hover:bg-gray-400 hover:scale-105 transform transition duration-200 ease-in-out" type="submit">
                                     <ShoppingCartIcon className="h-6 w-6 mr-1 text-gray-800 dark:text-gray-200" viewBox="0 0 20 20" fill="currentColor" />
                                     <span className="font-semibold text-gray-700 dark:text-gray-300">Add To Cart</span>
                                 </button>

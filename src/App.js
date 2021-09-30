@@ -6,9 +6,8 @@ import Services from './components/Services';
 import About from './components/About';
 import Contact from './components/Contact';
 import Error404 from './components/Error404';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import Payment from './components/Payment';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { setLoggedIn } from './features/loggedInSlice'
@@ -33,7 +32,7 @@ function App() {
 
     async function fetchData() {
 
-      try {      
+      try {
         const res = await fetch('https://my-server-demo.herokuapp.com/user/check', {
           method: 'POST',
           body: JSON.stringify({ token }),
@@ -54,7 +53,7 @@ function App() {
         console.log(err);
       }
     }
-  }, [cookies.authToken]);
+  }, [cookies.authToken, dispatch]);
 
   return (
     <Router>
@@ -76,9 +75,6 @@ function App() {
             </Route>
             <Route path="/contact">
               <Contact />
-            </Route>
-            <Route path='/payment'>
-              <Payment />
             </Route>
             <Route path="*">
               <Error404 />

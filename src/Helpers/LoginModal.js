@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { ChevronDoubleRightIcon, XIcon } from '@heroicons/react/solid'
+import { ChevronDoubleRightIcon, XIcon, BanIcon } from '@heroicons/react/solid'
 import { setLoggedIn } from '../features/loggedInSlice';
 
 const outerModalVariants = {
@@ -46,10 +46,12 @@ function LoginModal({ setLoginModal, setCookie }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [loginPressed, setLoginPressed] = useState(false);
 
     const handleLogin = async (e) => {
         e.preventDefault();
 
+        setLoginPressed(true);
         setPasswordError(null);
         setEmailError(null);
 
@@ -61,6 +63,7 @@ function LoginModal({ setLoginModal, setCookie }) {
             });
             const data = await res.json();
             console.log(data);
+            setLoginPressed(false);
 
             if (data.password) {
                 setPasswordError(data.password);
@@ -116,10 +119,20 @@ function LoginModal({ setLoginModal, setCookie }) {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         { passwordError && <div className="mb-2 text-xs text-red-600">{passwordError}</div> }
-                        <button className="focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-700 bg-gray-200 focus:outline-none tracking-wide dark:text-green-600" type="submit"
-                        >Login
-                            <ChevronDoubleRightIcon className="inline h-6 w-6 ml-2" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                        </button>
+                        { loginPressed ? (
+                            <button className="cursor-not-allowed focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-400 bg-pink-500 focus:outline-none tracking-wide dark:text-green-400 shadow-md"
+                            >
+                                <span>Logging In</span>
+                                <BanIcon className="inline h-6 w-6 ml-2" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                            </button>
+                        ) : (
+                            <button className="focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-700 bg-gray-200 focus:outline-none tracking-wide dark:text-green-600 shadow-md" type="submit"
+                            >
+                                <span>Login</span>
+                                <ChevronDoubleRightIcon className="inline h-6 w-6 ml-2" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                            </button>
+                        ) }
+                        
                     </form>
                 </motion.div>
             </div>

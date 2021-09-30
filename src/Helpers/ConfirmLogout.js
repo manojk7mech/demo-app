@@ -66,8 +66,8 @@ function ConfirmLogout(props) {
                     >
                         <div className="font-bold text-xl text-gray-800 text-center p-3 ">Are you sure you want to Log Out of this site?</div>
                         <div className="flex justify-center p-2">
-                            <button className="bg-green-400 text-gray-700 font-bold text-xl p-2 m-2 rounded" onClick={() => closeModal(false)}>Cancel</button>
-                            <button className="bg-red-400 text-gray-700 font-bold text-xl p-2 m-2 rounded" onClick={handleLogout}>Logout</button>
+                            <button className="bg-red-400 text-gray-700 font-bold text-xl p-2 m-2 rounded shadow-md" onClick={handleLogout}>Logout</button>
+                            <button className="bg-green-400 text-gray-700 font-bold text-xl p-2 m-2 rounded shadow-md" onClick={() => closeModal(false)}>Cancel</button>
                         </div>
                     </motion.div>
                 </div>

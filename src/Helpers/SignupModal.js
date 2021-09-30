@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ChevronDoubleRightIcon, XIcon } from '@heroicons/react/solid'
+import { BanIcon, ChevronDoubleRightIcon, XIcon } from '@heroicons/react/solid'
 import { setLoggedIn } from "../features/loggedInSlice";
 import { motion } from 'framer-motion';
 
@@ -47,10 +47,13 @@ function SignupModal({ setSignupModal, setCookie }) {
     const [nameError, setNameError] = useState(null);
     const [emailError, setEmailError] = useState(null);
     const [passwordError, setPasswordError] = useState(null);
+
+    const [signupPressed, setSignupPressed] = useState(false);
     
     const handleSignup = async (e) => {
         e.preventDefault();
 
+        setSignupPressed(true);
         setNameError(null);
         setEmailError(null);
         setPasswordError(null);
@@ -63,6 +66,8 @@ function SignupModal({ setSignupModal, setCookie }) {
             });
             const data = await res.json();
             console.log(data);
+            setSignupPressed(false);
+
             if (data.errors) {
                 setNameError(data.errors.name);
                 setPasswordError(data.errors.password);
@@ -119,10 +124,21 @@ function SignupModal({ setSignupModal, setCookie }) {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         { passwordError && <div className="mb-2 text-xs text-red-600">{passwordError}</div> }
-                        <button className="focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-700 dark:text-green-600 bg-gray-200 focus:outline-none tracking-wide" type="submit">
-                            Sign Up
-                            <ChevronDoubleRightIcon className="inline h-6 w-6 ml-2" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                        </button>
+                        
+                        { signupPressed ? (
+                            <button className="cursor-not-allowed focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-400 bg-pink-500 focus:outline-none tracking-wide dark:text-green-400 shadow-md"
+                            >
+                                <span>Signing Up</span>
+                                <BanIcon className="inline h-6 w-6 ml-2" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                            </button>
+                        ) : (
+                            <button className="focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-blue-600 block p-2 mt-3 m-2 mx-auto w-full text-xl font-bold rounded-md text-blue-700 bg-gray-200 focus:outline-none tracking-wide dark:text-green-600 shadow-md" type="submit"
+                            >
+                                <span>Signup</span>
+                                <ChevronDoubleRightIcon className="inline h-6 w-6 ml-2" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                            </button>
+                        ) }
+                        
                     </form>
                 </motion.div>
             </div>

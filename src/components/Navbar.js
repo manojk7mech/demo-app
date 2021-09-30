@@ -9,7 +9,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/solid";
 const Navbar = ({ setCookie, removeCookie }) => {
     const dispatch = useDispatch();
     const darkEnabled = useSelector(state => state.darkEnabled.value);
-    const theUser = useSelector(state => state.theUser.value);
+    // const theUser = useSelector(state => state.theUser.value);
 
     const [width, setWidth] = useState(window.innerWidth);
     const [isShow, setIsShow] = useState(false);
