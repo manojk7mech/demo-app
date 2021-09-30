@@ -132,6 +132,7 @@ function ConfirmPayment({ closeModal }) {
                     : (
                     <motion.div 
                         variants={firstModalVariants}
+                        ent
                         className="max-w-md p-3 border-2 rounded-md m-3 shadow"
                     >
                         <div className="font-bold text-xl text-gray-800 text-center p-3 ">Are you sure you want to make a Payment?</div>
