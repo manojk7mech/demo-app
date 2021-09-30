@@ -89,7 +89,7 @@ function LoginModal({ setLoginModal, setCookie }) {
     }
 
     return (
-        
+
         <>
             <motion.div
                 variants={outerModalVariants}

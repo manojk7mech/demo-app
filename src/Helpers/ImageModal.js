@@ -2,27 +2,46 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const outerModalVariants = {
+    hidden: { opacity: 0 },
     visible: { opacity: 1 },
-    hidden: { opacity: 0 }
+    exit: { opacity: 0,
+        transition: { delay: 0.4 }
+    }
 };
 
 const innerModalVariants = {
-    hidden: { y: "100vh", opacity: 0 },
+    hidden: { y: "-100vh", opacity: 0.5 },
     visible: {
         y: 0,
         opacity: 1,
-        transition: { delay: 0.5 }
+        transition: { 
+            delay: 0.2,
+            duration: 0.3,
+            type: "spring",
+            damping: 25,
+            stiffness: 500
+        }
+    },
+    exit: { 
+        y: "100vh", 
+        opacity: 0.5,
+        transition: { 
+            duration: 0.2,
+            type: "spring",
+            damping: 25,
+            stiffness: 500
+        }
     }
 };
 
 function ImageModal({ setOpenImageModal, myImage }) {
     return (
-        <AnimatePresence>
+        <>
             <motion.div
                 variants={outerModalVariants}
                 initial="hidden"
                 animate="visible"
-                exit="hidden"
+                exit="exit"
             >
                 <button className="font-mono fixed z-50 p-2 top-0 right-0 font-bold" onClick={() => setOpenImageModal(false)}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white">
@@ -37,7 +56,7 @@ function ImageModal({ setOpenImageModal, myImage }) {
                     </motion.div>
                 </div>
             </motion.div>
-        </AnimatePresence>
+        </>
     );
 }
 

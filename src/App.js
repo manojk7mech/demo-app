@@ -42,7 +42,7 @@ function App() {
         // console.log(data);
         if (data.user) {
           dispatch(setLoggedIn(true));
-          dispatch(setTheUser(data.user));
+          dispatch(setTheUser(data));
           console.log(data.user);
         }
         if (data.error) {

@@ -4,12 +4,19 @@ import ImageModal from "../Helpers/ImageModal";
 import { useState } from "react";
 import { BadgeCheckIcon, CurrencyRupeeIcon, HeartIcon, ShoppingCartIcon } from "@heroicons/react/solid";
 import { CheckCircleIcon } from '@heroicons/react/outline';
-
+import { AnimatePresence } from "framer-motion";
+import { useSelector } from 'react-redux';
+// import { motion, useViewportScroll } from 'framer-motion';
 
 const Products = () => {
-
     const [openImageModal, setOpenImageModal] = useState(false);
     const [myImage, setMyImage] = useState({});
+    const [productList, setProductList] = useState(ProductList);
+    const [renderNow, setRenderNow] = useState(false);
+
+    const theUser = useSelector(state => state.theUser.value);
+
+    // const { scrollYProgress } = useViewportScroll();
 
     const openImg = (image) => {
         setOpenImageModal(true);
@@ -17,17 +24,26 @@ const Products = () => {
     };
 
     const toggleColor = (product) => {
-        product.color === "text-gray-100" ? ProductList[product.index].color = "text-red-600" :  ProductList[product.index].color = "text-gray-100";
+        product.color === "text-gray-100" ? productList[product.index].color = "text-red-600" :  productList[product.index].color = "text-gray-100";
+        setProductList(productList);
+        setRenderNow(!renderNow);
     };
-
-    // const changeColor = () => {
-    //     const curColor = heartRef.current.fill
-    //     (curColor == "white") ? heartRef.current.fill = "red" : heartRef.current.fill = "white";
-    // };
 
     return ( 
         <>
-            { openImageModal && <ImageModal setOpenImageModal={setOpenImageModal} myImage={myImage} /> }
+            {/* <motion.div
+                className="fixed top-0 left-0 z-20 p-3 border-t-2"
+                // d="M 0, 20 a 20, 20 0 1,0 40,0 a 20, 20 0 1,0 -40,0"
+
+                style={{ width:  }}
+            /> */}
+            <AnimatePresence
+                initial={false}
+                exitBeforeEnter
+                onExitComplete={() => null}
+            >
+                { openImageModal && <ImageModal setOpenImageModal={setOpenImageModal} myImage={myImage} /> }
+            </AnimatePresence>
             <div className="md:grid md:grid-cols-4 md:gap-4 p dark:bg-gray-700">
                 {/* insatgram like stories */}
                 <div className="md:flex-col md:justify-start items-center col-start-4 ">
@@ -85,7 +101,7 @@ const Products = () => {
                 <h5 className="text-center font-semibold text-xl p-3 dark:text-green-600 text-blue-800">Choose from the following products! Okay...</h5>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 pb-3">
                 
-                    { ProductList.map(product => (
+                    { productList.map(product => (
 
                         <div className="flex-col items-center m-3 rounded-md overflow-hidden shadow-md hover:shadow-lg bg-gray-200 dark:bg-gray-600 relative">
                             <HeartIcon onClick={() => toggleColor(product)} className={`${product.color} h-6 w-6 mr-1 absolute top-1 right-1 cursor-pointer z-10 hover:scale-110 transform transition duration-200 ease-in-out`} viewBox="0 0 20 20" fill="currentColor" stroke="none"/>

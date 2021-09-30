@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { XIcon } from '@heroicons/react/solid'
 
 const outerModalVariants = {
@@ -113,7 +113,13 @@ function ConfirmPayment({ closeModal }) {
                     <XIcon className="h-6 w-6" fill="white" viewBox="0 0 24 24" stroke="none" />
                 </button>
                 <div className="w-full h-full bg-red-300 fixed top-0 z-40 grid place-items-center">
+                    {/* <AnimatePresence
+                        // initial={false}
+                        exitBeforeEnter={true}
+                        // onExitComplete={() => null}
+                    > */}
                     { nextModal ? (
+                        <AnimatePresence initial={false} exitBeforeEnter onExitComplete={() => null}>
                         <motion.div 
                             variants={nextModalVariants}
                             className="flex justify-center"
@@ -128,11 +134,12 @@ function ConfirmPayment({ closeModal }) {
                                 </div>
                             </div>
                         </motion.div>
+                        </AnimatePresence>
                     )
                     : (
+                        <AnimatePresence initial={false} exitBeforeEnter onExitComplete={() => null}>
                     <motion.div 
                         variants={firstModalVariants}
-                        ent
                         className="max-w-md p-3 border-2 rounded-md m-3 shadow"
                     >
                         <div className="font-bold text-xl text-gray-800 text-center p-3 ">Are you sure you want to make a Payment?</div>
@@ -141,7 +148,9 @@ function ConfirmPayment({ closeModal }) {
                             <button className="bg-green-400 text-gray-700 font-bold text-xl py-2 px-3 m-2 rounded shadow-md" onClick={() => closeModal(false)}>Cancel</button>
                         </div>
                     </motion.div>
+                    </AnimatePresence>
                     ) }
+                    {/* </AnimatePresence> */}
                 </div>
             </motion.div>
         </>

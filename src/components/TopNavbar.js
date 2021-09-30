@@ -40,9 +40,9 @@ const TopNavbar = (props) => {
                 exitBeforeEnter={true}
                 onExitComplete={() => null}
             > 
-                    { openLoginModal && 
-                        <LoginModal setLoginModal={setOpenLoginModal} setCookie={setCookie} />
-                    }
+                { openLoginModal && 
+                    <LoginModal setLoginModal={setOpenLoginModal} setCookie={setCookie} />
+                }
             </AnimatePresence>
             <AnimatePresence
                 initial={false}
@@ -86,7 +86,7 @@ const TopNavbar = (props) => {
                     { loggedIn ? 
                         <div className="mx-3 flex flex-col md:flex-row w-auto">
                             <div className="text-center text-blue-800 dark:text-blue-200 border-b-2 font-semibold border-blue-800 dark:border-blue-200 px-2 py-1 my-1 cursor-pointer dark:hover:bg-blue-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1 uppercase w-full">
-                                {theUser}
+                                {theUser.user}
                             </div>
                             <motion.button className="text-center text-blue-800 dark:text-blue-200 border-2 rounded-lg font-semibold border-blue-800 dark:border-blue-200 px-2 py-1 my-1 cursor-pointer dark:hover:bg-blue-100 hover:bg-blue-800 dark:hover:text-green-600 hover:text-blue-50 transform duration-300 ease-out mx-1 w-full" 
                                 onClick={() => setOpenLogoutModal(true)}

@@ -1,14 +1,36 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HomeIcon, ShoppingBagIcon, HandIcon, QuestionMarkCircleIcon, MailIcon } from '@heroicons/react/solid';
-// import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+
+const menuVariants = {
+    hidden: { height: 0 },
+    visible: { height: "auto", 
+        transition: { 
+            duration: 0.5 
+        } 
+    },
+    exit: { 
+        height: 0, 
+        transition: { 
+            duration: 0.5 
+        } 
+    }
+}
 
 const MenuItems = () => {
     const { pathname } = useLocation();
     const [activeTab, setActiveTab] = useState(pathname);
 
     return (
-        <div>
+        
+        <motion.div
+            className=""
+            variants={menuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+        >
             <ul className="md:flex items-center text-center justify-center border-t border-b border-gray-700 dark:border-gray-200">
                 <li className={`${activeTab === '/' ? 'nav-item-active' : 'nav-item'}`}
                     onClick={() => setActiveTab('/')}
@@ -51,7 +73,7 @@ const MenuItems = () => {
                     </Link>
                 </li>
             </ul>
-        </div>
+        </motion.div>
     );
 }
  
