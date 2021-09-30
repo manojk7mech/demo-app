@@ -40,7 +40,6 @@ const Navbar = ({ setCookie, removeCookie }) => {
                                 </div>
                             </div>
                             <AnimatePresence
-                                initial={false}
                                 exitBeforeEnter
                                 onExitComplete={() => null}
                             >

@@ -4,16 +4,16 @@ import { HomeIcon, ShoppingBagIcon, HandIcon, QuestionMarkCircleIcon, MailIcon }
 import { AnimatePresence, motion } from 'framer-motion';
 
 const menuVariants = {
-    hidden: { height: 0 },
-    visible: { height: "auto", 
+    hidden: { height: 0, opacity: 0 },
+    visible: { height: "auto", opacity: 1,
         transition: { 
-            duration: 0.5 
+            duration: 0.2 
         } 
     },
     exit: { 
-        height: 0, 
+        height: 0, opacity: 0,
         transition: { 
-            duration: 0.5 
+            duration: 0.2 
         } 
     }
 }
@@ -24,14 +24,14 @@ const MenuItems = () => {
 
     return (
         
-        <motion.div
-            className=""
-            variants={menuVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-        >
-            <ul className="md:flex items-center text-center justify-center border-t border-b border-gray-700 dark:border-gray-200">
+        <>
+            <motion.ul
+                className=""
+                variants={menuVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="md:flex items-center text-center justify-center border-t border-gray-300 dark:border-gray-200 shadow">
                 <li className={`${activeTab === '/' ? 'nav-item-active' : 'nav-item'}`}
                     onClick={() => setActiveTab('/')}
                 >
@@ -72,8 +72,8 @@ const MenuItems = () => {
                         <span>Contact</span>
                     </Link>
                 </li>
-            </ul>
-        </motion.div>
+            </motion.ul>
+        </>
     );
 }
  
