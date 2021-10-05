@@ -26,12 +26,12 @@ const MenuItems = () => {
         
         <>
             <motion.ul
-                className=""
                 variants={menuVariants}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="md:flex items-center text-center justify-center border-t border-gray-300 dark:border-gray-200 shadow">
+                className="md:flex items-center text-center justify-center border-t border-gray-300 dark:border-gray-200 shadow"
+            >
                 <li className={`${activeTab === '/' ? 'nav-item-active' : 'nav-item'}`}
                     onClick={() => setActiveTab('/')}
                 >

@@ -1,7 +1,8 @@
 import TrendingList from "../Helpers/TrendingList";
 import ProductList from "../Helpers/ProductList";
 import ImageModal from "../Helpers/ImageModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Axios from 'axios';
 import { BadgeCheckIcon, CurrencyRupeeIcon, HeartIcon, ShoppingCartIcon } from "@heroicons/react/solid";
 import { CheckCircleIcon } from '@heroicons/react/outline';
 import { AnimatePresence } from "framer-motion";
@@ -9,12 +10,43 @@ import { useSelector } from 'react-redux';
 // import { motion, useViewportScroll } from 'framer-motion';
 
 const Products = () => {
+    const theUser = useSelector(state => state.theUser.value);
+
     const [openImageModal, setOpenImageModal] = useState(false);
     const [myImage, setMyImage] = useState({});
-    const [productList, setProductList] = useState(ProductList);
+    // const [productList, setProductList] = useState(ProductList);
     const [renderNow, setRenderNow] = useState(false);
+    const [colorList, setColorList] = useState(["text-gray-100", "text-gray-100", "text-gray-100", "text-gray-100", "text-gray-100", "text-gray-100", "text-gray-100", "text-gray-100", "text-gray-100"]);
 
-    const theUser = useSelector(state => state.theUser.value);
+    useEffect(() => {
+        const getColorList = async () => {
+            try {
+                const colors = await Axios.get(`https://my-server-demo.herokuapp.com/user/product/${theUser.id}`);
+                console.log(colors.data.colorList);
+                setColorList(colors.data.colorList);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        getColorList();
+    }, [theUser.id]);
+
+    useEffect(() => {
+        const postColorList = async () => {
+            try {
+                await Axios.patch(`https://my-server-demo.herokuapp.com/user/product/${theUser.id}`, { colorList });
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        postColorList();
+    }, [colorList, renderNow]);
+
+    const toggleColor = (product) => {
+        colorList[product.index] === "text-gray-100" ? colorList[product.index] = "text-red-600" :  colorList[product.index] = "text-gray-100";
+        setColorList(colorList);
+        setRenderNow(!renderNow);
+    };
 
     // const { scrollYProgress } = useViewportScroll();
 
@@ -23,11 +55,7 @@ const Products = () => {
         setMyImage(image);
     };
 
-    const toggleColor = (product) => {
-        product.color === "text-gray-100" ? productList[product.index].color = "text-red-600" :  productList[product.index].color = "text-gray-100";
-        setProductList(productList);
-        setRenderNow(!renderNow);
-    };
+    
 
     return ( 
         <>
@@ -101,10 +129,9 @@ const Products = () => {
                 <h5 className="text-center font-semibold text-xl p-3 dark:text-green-600 text-blue-800">Choose from the following products! Okay...</h5>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 pb-3">
                 
-                    { productList.map(product => (
-
-                        <div className="flex-col items-center m-3 rounded-md overflow-hidden shadow-md hover:shadow-lg bg-gray-200 dark:bg-gray-600 relative">
-                            <HeartIcon onClick={() => toggleColor(product)} className={`${product.color} h-6 w-6 mr-1 absolute top-1 right-1 cursor-pointer z-10 hover:scale-110 transform transition duration-200 ease-in-out`} viewBox="0 0 20 20" fill="currentColor" stroke="none"/>
+                    { ProductList.map(product => (
+                        <div key={product.index.toString()} className="flex-col items-center m-3 rounded-md overflow-hidden shadow-md hover:shadow-lg bg-gray-200 dark:bg-gray-600 relative">
+                            <HeartIcon onClick={() => toggleColor(product)} className={`${colorList[product.index]} h-6 w-6 mr-1 absolute top-1 right-1 cursor-pointer z-10 hover:scale-110 transform transition duration-200 ease-in-out`} viewBox="0 0 20 20" fill="currentColor" stroke="none"/>
                             <div className="flex justify-center" onClick={() => openImg(product)}>
                                 <img className="h-48 w-full object-cover cursor-pointer hover:scale-105 transform transition duration-200 ease-in-out" 
                                 src={product.imgSrc} 
