@@ -66,7 +66,7 @@ const Snackbar = ({ message, theme }) => {
             onExitComplete={() => null}
         >
             { isOpen && (
-                
+
                 <motion.div 
                     variants={innerModalVariants}
                     initial="hidden"
