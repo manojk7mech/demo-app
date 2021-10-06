@@ -8,12 +8,22 @@ import { Provider } from 'react-redux';
 import theUserReducer from './features/theUserSlice';
 import loggedInReducer from './features/loggedInSlice';
 import darkEnabledReducer from './features/darkEnabledSlice';
+import signupSuccessReducer from './features/signupSuccessSlice';
+import loginSuccessReducer from './features/loginSuccessSlice';
+import logoutSuccessReducer from './features/logoutSuccessSlice';
+import wishlistFailReducer from './features/wishlistFailSlice';
+import addToCartReducer from './features/addToCartSlice';
 
 const store = configureStore({
   reducer: {
     theUser: theUserReducer,
     loggedIn: loggedInReducer,
-    darkEnabled: darkEnabledReducer
+    darkEnabled: darkEnabledReducer,
+    loginSuccess: loginSuccessReducer,
+    logoutSuccess: logoutSuccessReducer,
+    signupSuccess: signupSuccessReducer,
+    wishlistFail: wishlistFailReducer,
+    addToCart: addToCartReducer
   }
 });
 

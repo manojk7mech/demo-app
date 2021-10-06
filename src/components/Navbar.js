@@ -20,7 +20,7 @@ const Navbar = ({ setCookie, removeCookie }) => {
             setWidth(window.innerWidth);
         });
     }, []);
-    
+
     return (
 
         <nav className="bg-gray-100 dark:bg-gray-700">

@@ -8,11 +8,13 @@ import Contact from './components/Contact';
 import Error404 from './components/Error404';
 import { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import Footer from './components/Footer';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { setLoggedIn } from './features/loggedInSlice'
 import { setTheUser } from './features/theUserSlice';
-import Footer from './components/Footer';
+import { setSignupSuccess } from './features/signupSuccessSlice';
+import { setLoginSuccess } from './features/loginSuccessSlice';
 
 function App() {
   const dispatch = useDispatch();

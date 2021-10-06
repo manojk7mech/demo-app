@@ -6,11 +6,16 @@ import Axios from 'axios';
 import { BadgeCheckIcon, CurrencyRupeeIcon, HeartIcon, ShoppingCartIcon } from "@heroicons/react/solid";
 import { CheckCircleIcon } from '@heroicons/react/outline';
 import { AnimatePresence } from "framer-motion";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setWishlistFail } from "../features/wishlistFailSlice";
+import { setAddToCart } from "../features/addToCartSlice";
 // import { motion, useViewportScroll } from 'framer-motion';
 
 const Products = () => {
     const theUser = useSelector(state => state.theUser.value);
+
+    const dispatch = useDispatch();
+    // const wishlistFail = useSelector(state => state.wishlistFail.value);
 
     const [openImageModal, setOpenImageModal] = useState(false);
     const [myImage, setMyImage] = useState({});
@@ -41,11 +46,14 @@ const Products = () => {
         };
         postColorList();
     }, [colorList, renderNow]);
-
+ 
     const toggleColor = (product) => {
         colorList[product.index] === "text-gray-100" ? colorList[product.index] = "text-red-600" :  colorList[product.index] = "text-gray-100";
         setColorList(colorList);
         setRenderNow(!renderNow);
+        if (!theUser.id) {
+            dispatch(setWishlistFail(true));
+        }
     };
 
     // const { scrollYProgress } = useViewportScroll();
@@ -55,7 +63,10 @@ const Products = () => {
         setMyImage(image);
     };
 
-    
+    const addToCart = (e) => {
+        e.preventDefault();
+        dispatch(setAddToCart(true));
+    }
 
     return ( 
         <>
@@ -150,7 +161,10 @@ const Products = () => {
                                         {product.amount}
                                     </span>
                                 </div>
-                                <button className="flex justify-center items-center my-2 mx-2 py-1 px-2 rounded-md border-blue-800 dark:border-gray-200 border dark:text-blue-100 hover:text-blue-50 dark:hover:bg-gray-800 hover:bg-gray-400 hover:scale-105 transform transition duration-200 ease-in-out" type="submit">
+                                <button 
+                                    className="flex justify-center items-center my-2 mx-2 py-1 px-2 rounded-md border-blue-800 dark:border-gray-200 border dark:text-blue-100 hover:text-blue-50 dark:hover:bg-gray-800 hover:bg-gray-400 hover:scale-105 transform transition duration-200 ease-in-out" type="submit"
+                                    onClick={(e) => addToCart(e)}
+                                >
                                     <ShoppingCartIcon className="h-6 w-6 mr-1 text-gray-800 dark:text-gray-200" viewBox="0 0 20 20" fill="currentColor" />
                                     <span className="font-semibold text-gray-700 dark:text-gray-300">Add To Cart</span>
                                 </button>
