@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { XIcon } from '@heroicons/react/solid';
 import { motion, AnimatePresence } from 'framer-motion'
+import { useDispatch } from 'react-redux';
+import { setAddToCart } from '../features/addToCartSlice'
+import { setLoginSuccess } from '../features/loginSuccessSlice'; 
+import { setLogoutSuccess } from '../features/logoutSuccessSlice'; 
+import { setSignupSuccess } from '../features/signupSuccessSlice';
+import { setWishlistFail } from '../features/wishlistFailSlice';
 
 const innerModalVariants = {
-    hidden: { x: "-100vw", opacity: 0.5 },
+    hidden: { y: "50vh", opacity: 0.5 },
     visible: {
-        x: 0,
+        y: 0,
         opacity: 1,
         transition: { 
             delay: 0.2,
@@ -15,7 +21,7 @@ const innerModalVariants = {
         }
     },
     exit: { 
-        x: "100vw", 
+        y: "50vh", 
         opacity: 0.5,
         transition: { 
             duration: 0.3,
@@ -25,13 +31,30 @@ const innerModalVariants = {
     }
 };
 
+
+
+
+
 const Snackbar = ({ message, theme }) => {
-    const [isOpen, closeSnackbar] = useState(true);
+    const [isOpen, setIsOpen] = useState(true);
+    const dispatch = useDispatch();
 
     useEffect(() => {
+        const dispatchAll = () => {
+            dispatch(setAddToCart(false));
+            dispatch(setLoginSuccess(false));
+            dispatch(setLogoutSuccess(false));
+            dispatch(setSignupSuccess(false));
+            dispatch(setWishlistFail(false));
+        };
+
         setTimeout(() => {
-            closeSnackbar(false);
+            setIsOpen(false);
+            dispatchAll();
         }, 5000);
+
+
+
     }, [isOpen]);
 
     return (
@@ -39,7 +62,6 @@ const Snackbar = ({ message, theme }) => {
             // initial={false}
             exitBeforeEnter
             onExitComplete={() => null}
-            className="grid justify-items-center"
         >
             { isOpen && (
                 
@@ -48,12 +70,12 @@ const Snackbar = ({ message, theme }) => {
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className={`fixed z-40 bottom-0 max-w-lg mx-auto ${theme === "error" ? "bg-gray-400" : "bg-gray-300"} rounded-t-lg flex justify-between items-center shadow-2xl`}
+                    className={`fixed z-40 bottom-0 sm:max-w-lg w-full mx-auto ${theme === "error" ? "bg-gray-400" : "bg-gray-300"} rounded-t-lg flex justify-between items-center shadow-2xl`}
                 >
                     <div className={`py-2 px-4 ${theme === "error" ? "text-red-500" : "text-green-600"} text-center font-semibold text-lg justify-self-center`}>
                         { message }
                     </div>
-                    <XIcon className={`m-2 h-6 w-6 cursor-pointer ${theme === "error" ? "text-white" : "text-gray-500"} text-white`} onClick={() => closeSnackbar(false)} fill="currentColor" viewBox="0 0 20 20" stroke="none" />
+                    <XIcon className={`m-2 h-6 w-6 cursor-pointer ${theme === "error" ? "text-white" : "text-gray-500"} text-white`} onClick={() => setIsOpen(false)} fill="currentColor" viewBox="0 0 20 20" stroke="none" />
                 </motion.div>
             ) }
         </AnimatePresence>

@@ -12,7 +12,7 @@ function Footer() {
     return (
         <>
             { logoutSuccess && (
-                <div className="grid justify-items-center">
+                <div className="flex justify-center items-center">
                     <Snackbar message="You are successfully logged out!" theme="error" />
                 </div> 
             ) }
@@ -28,7 +28,7 @@ function Footer() {
             ) }
             { wishlistFail && (
                 <div className="grid justify-items-center">
-                    <Snackbar message="You must sign in to wishlist  items!" theme="error" />
+                    <Snackbar message="You must sign in to wishlist items!" theme="error" />
                 </div> 
             ) }
             { addToCart && (
