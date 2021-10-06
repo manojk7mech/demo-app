@@ -4,7 +4,7 @@ import TopNavbar from "./TopNavbar";
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 import { setDarkEnabled } from '../features/darkEnabledSlice';
-import { MenuIcon, XIcon } from "@heroicons/react/solid";
+import { MenuIcon, MoonIcon, SunIcon, XIcon } from "@heroicons/react/solid";
 import { AnimatePresence } from "framer-motion";
 
 const Navbar = ({ setCookie, removeCookie }) => {
@@ -19,6 +19,10 @@ const Navbar = ({ setCookie, removeCookie }) => {
         window.addEventListener("resize", () => {
             setWidth(window.innerWidth);
         });
+
+        return () => {
+            // window.removeEventListener("resize");
+        }
     }, []);
 
     return (
@@ -32,11 +36,14 @@ const Navbar = ({ setCookie, removeCookie }) => {
                 <div>
                     { isShow ?
                         <>
-                            <div className="flex items-center justify-items-end">
-                                <XIcon onClick={() => setIsShow(!isShow)} className="h-8 w-8 mx-auto cursor-pointer text-gray-800 dark:text-gray-100" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                                <div onClick={() => dispatch(setDarkEnabled(!darkEnabled))}
-                                className="mx-auto my-2 flex md:hidden h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 dark:ring-green-400 ring-blue-700 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out">
-                                    <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 dark:bg-green-300 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
+                            <div className="flex items-center justify-around">
+                                <XIcon onClick={() => setIsShow(!isShow)} className="h-7 w-7 cursor-pointer text-gray-800 dark:text-gray-100" fill="currentColor" viewBox="0 0 20 20" stroke="none" />
+                                <div className="flex md:hidden justify-center items-center">
+                                    <SunIcon className="h-7 w-7 text-yellow-400 dark:text-yellow-100" fill="currentColor" viewBox="0 0 20 20" stroke="none" />
+                                    <div onClick={() => dispatch(setDarkEnabled(!darkEnabled))} className=" mx-2 flex h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 dark:ring-green-400 ring-blue-700 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out"> 
+                                        <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 dark:bg-green-300 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
+                                    </div>
+                                    <MoonIcon className="h-7 w-7 text-blue-900 dark:text-blue-600" fill="currentColor" viewBox="0 0 20 20" stroke="none" />
                                 </div>
                             </div>
                             <AnimatePresence
@@ -47,10 +54,14 @@ const Navbar = ({ setCookie, removeCookie }) => {
                             </AnimatePresence>
                         </>
                         :
-                        <div className="flex items-center">
-                            <MenuIcon onClick={() => setIsShow(!isShow)} className="h-8 w-8 mx-auto cursor-pointer text-gray-800 dark:text-gray-100" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                            <div onClick={() => dispatch(setDarkEnabled(!darkEnabled))} className="mx-auto my-2 flex md:hidden h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 dark:ring-green-400 ring-blue-700 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out shadow-sm">
-                                <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 dark:bg-green-300 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
+                        <div className="flex items-center justify-around">
+                            <MenuIcon onClick={() => setIsShow(!isShow)} className="h-7 w-7 cursor-pointer text-gray-800 dark:text-gray-100" fill="currentColor" viewBox="0 0 20 20" stroke="none" />
+                            <div className="flex justify-center items-center">
+                                <SunIcon className="h-7 w-7 text-yellow-400 dark:text-yellow-100" fill="currentColor" viewBox="0 0 20 20" stroke="none" />
+                                <div onClick={() => dispatch(setDarkEnabled(!darkEnabled))} className="mx-2 flex h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 dark:ring-green-400 ring-blue-700 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out"> 
+                                    <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 dark:bg-green-300 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
+                                </div>
+                                <MoonIcon className="h-7 w-7 text-blue-900 dark:text-blue-600" fill="currentColor" viewBox="0 0 20 20" stroke="none" />
                             </div>
                         </div>
                     }

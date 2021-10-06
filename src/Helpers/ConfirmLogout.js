@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { XIcon } from '@heroicons/react/solid'
 import { setLogoutSuccess } from "../features/logoutSuccessSlice";
+import { setTheUser } from '../features/theUserSlice';
 import { setLoggedIn } from '../features/loggedInSlice';
 
 const outerModalVariants = {
@@ -47,6 +48,7 @@ function ConfirmLogout(props) {
         dispatch(setLoggedIn(false));
         dispatch(setLogoutSuccess(true));
         removeCookie("authToken");
+        dispatch(setTheUser({ user: null, id: null }));
         closeModal(false);
     };
  

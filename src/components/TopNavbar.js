@@ -8,6 +8,7 @@ import SignupModal from "../Helpers/SignupModal";
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 import { setDarkEnabled } from '../features/darkEnabledSlice';
+import { MoonIcon, SunIcon } from "@heroicons/react/solid";
 
 const buttonVariants = {
     hover: {
@@ -108,8 +109,12 @@ const TopNavbar = (props) => {
                             >Login</motion.button>
                         </div>
                     }
-                    <div onClick={() => dispatch(setDarkEnabled(!darkEnabled))} className="mx-auto hidden md:flex h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 dark:ring-green-400 ring-blue-700 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out mt-4"> 
-                        <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 dark:bg-green-300 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
+                    <div className="mx-auto hidden md:flex items-center justify-center mt-4">
+                        <SunIcon className="h-7 w-7 text-yellow-400 dark:text-yellow-100" fill="currentColor" viewBox="0 0 20 20" stroke="none" />
+                        <div onClick={() => dispatch(setDarkEnabled(!darkEnabled))} className=" mx-2 flex h-5 w-11 bg-gray-300 dark:bg-gray-600 ring-2 dark:ring-green-400 ring-blue-700 rounded-full cursor-pointer transform transition-transform duration-200 ease-in-out"> 
+                            <div className={`h-5 w-5 rounded-full ${darkEnabled ? "bg-green-400 dark:bg-green-300 translate-x-6" : "bg-gray-500 translate-x-0"} transform transition-transform duration-200 ease-in-out `}></div>
+                        </div>
+                        <MoonIcon className="h-7 w-7 text-blue-900 dark:text-blue-600" fill="currentColor" viewBox="0 0 20 20" stroke="none" />
                     </div>
                 </div>
             </div>

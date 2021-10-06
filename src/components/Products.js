@@ -36,16 +36,16 @@ const Products = () => {
         getColorList();
     }, [theUser.id]);
 
-    useEffect(() => {
-        const postColorList = async () => {
+    // useEffect(() => {
+        const postColorList = async (id) => {
             try {
-                await Axios.patch(`https://my-server-demo.herokuapp.com/user/product/${theUser.id}`, { colorList });
+                await Axios.patch(`https://my-server-demo.herokuapp.com/user/product/${id}`, { colorList });
             } catch (err) {
                 console.log(err);
             }
         };
-        postColorList();
-    }, [colorList, renderNow]);
+        // postColorList();
+    // }, [colorList, renderNow]);
  
     const toggleColor = (product) => {
         colorList[product.index] === "text-gray-100" ? colorList[product.index] = "text-red-600" :  colorList[product.index] = "text-gray-100";
@@ -53,6 +53,8 @@ const Products = () => {
         setRenderNow(!renderNow);
         if (!theUser.id) {
             dispatch(setWishlistFail(true));
+        } else {
+            postColorList(theUser.id);
         }
     };
 

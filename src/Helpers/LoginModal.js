@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { ChevronDoubleRightIcon, XIcon, BanIcon } from '@heroicons/react/solid'
 import { setLoggedIn } from '../features/loggedInSlice';
+import { setTheUser } from '../features/theUserSlice';
 import { setLoginSuccess } from "../features/loginSuccessSlice";
 
 const outerModalVariants = {
@@ -79,6 +80,7 @@ function LoginModal({ setLoginModal, setCookie }) {
 
                 dispatch(setLoggedIn(true));
                 setLoginModal(false);
+                dispatch(setTheUser({ user: data.name , id: data.id}))
                 dispatch(setLoginSuccess(true));
                 // window.location ='/';
             }
