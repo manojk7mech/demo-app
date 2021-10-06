@@ -31,10 +31,6 @@ const innerModalVariants = {
     }
 };
 
-
-
-
-
 const Snackbar = ({ message, theme }) => {
     const [isOpen, setIsOpen] = useState(true);
     const dispatch = useDispatch();
@@ -48,12 +44,18 @@ const Snackbar = ({ message, theme }) => {
             dispatch(setWishlistFail(false));
         };
 
-        setTimeout(() => {
+        const timer1 = setTimeout(() => {
             setIsOpen(false);
+        }, 4000);
+
+        const timer2 = setTimeout(() => {
             dispatchAll();
-        }, 5000);
+        }, 4300);
 
-
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+        }
 
     }, [isOpen]);
 
